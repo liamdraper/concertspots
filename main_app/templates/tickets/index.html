@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Tickets:</h1>
+
+{% for ticket in tickets %}
+
+    <p>Ticket Number: {{ ticket.number }}</p>
+    <p>Seat: {{ ticket.seat }}</p>
+    <p>Price: {{ ticket.price }}</p>
+
+{% endfor %}
+
+{% endblock %}
