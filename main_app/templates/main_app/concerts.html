@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Concerts: </h1>
+
+{{ concert }}
+
+<h2>Search Concerts to add: </h2>
+<form action="" method="GET">
+    <input type="text" name="name" placeholder="Search...">
+    <button type="submit">SEARCH</button>
+</form>
+
+{% endblock %}
