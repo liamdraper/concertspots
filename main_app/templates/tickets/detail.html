@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Details: </h1>
+<p>{{ ticket.event_name }}</p>
+<p>Price: ${{ ticket.price }}</p>
+<p>{{ ticket.location }}</p>
+<p>{{ ticket.date }}</p>
+<a href="{% url 'ticket_delete' ticket.id %}">Delete</a>
+
+{% endblock %}
