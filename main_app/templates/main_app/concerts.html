@@ -3,12 +3,15 @@
 
 <h1>Concerts: </h1>
 
-{{ concert }}
-
-<h2>Search Concerts to add: </h2>
+<h2>Search Concerts: </h2>
 <form action="" method="GET">
     <input type="text" name="name" placeholder="Search...">
     <button type="submit">SEARCH</button>
 </form>
+<br>
+
+{{ concert }}
+
+<a href="{% url 'tickets_create' %}">Buy Ticket</a>
 
 {% endblock %}
