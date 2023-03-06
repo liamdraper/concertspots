@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import DeleteView
+from django.contrib.auth import logout
 from .models import Ticket
 import requests
 client_id = 'client_id=MzIxMjg4OTl8MTY3Nzk0NjYzNi4zMDA4MDYz'
@@ -22,6 +23,10 @@ def ticket_detail(request, ticket_id):
     return render(request, 'tickets/detail.html', {
         'ticket': ticket
     })
+    
+def logout_view(request):
+    logout(request)
+    return redirect('home')
 
 class TicketDelete(DeleteView):
     model = Ticket
