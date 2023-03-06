@@ -10,8 +10,20 @@
 </form>
 <br>
 
-{{ concert }}
+{% if concerts %}
+ 
+{% for concert in concerts %}
 
-<a href="{% url 'tickets_create' %}">Buy Ticket</a>
+<ul>
+    <li>
+        <form action="" method="GET">
+            <button type="submit" name="choice" value="{{ forloop.counter0 }}"> {{ concert }}</button>
+        </form>
+    </li>
+</ul>
+
+{% endfor %}
+
+{% endif %}
 
 {% endblock %}

@@ -7,6 +7,6 @@ urlpatterns = [
     path('tickets/', views.tickets_index, name='index'),
     path('tickets/<int:ticket_id>', views.ticket_detail, name='detail'),
     path('tickets/<int:pk>/delete/', views.TicketDelete.as_view(), name='ticket_delete'),
-    path('tickets/create/', views.add_ticket, name='tickets_create'),
+    path('tickets/create/', views.add_ticket, name='ticket_create'),
     path('concerts/', views.concerts, name='concerts')
 ]
