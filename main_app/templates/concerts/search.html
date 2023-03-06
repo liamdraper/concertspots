@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Concerts: </h1>
+<a href="{% url 'concerts_index' %}">View Recent Searches</a>
+
+<h2>Search Concerts: </h2>
+<form action="" method="GET">
+    <input type="text" name="name" placeholder="Search...">
+    <button type="submit">SEARCH</button>
+</form>
+<br>
+
+{% if concerts %}
+ 
+{% for concert in concerts %}
+
+<ul>
+    <li>
+        <form action="{% url 'concert_detail' concert.id %}" method="POST">
+            {% csrf_token %}
+            <label>{{ concert.title }} - {{ concert.venue.name_V2 }}</label>
+            <input type="hidden" name="event_name" value="{{ concert.title }}">
+            <input type="hidden" name="api_id" value="{{ concert.id }}">
+            <input type="hidden" name="price" value="100">
+            <input type="hidden" name="location" value="{{ concert.venue.address }}">
+            <input type="hidden" name="date" value="{{ concert.datetime_utc }}">
+            <button type="submit">Details</button>
+        </form>
+    </li>
+</ul>
+
+{% endfor %}
+
+{% endif %}
+
+{% endblock %}
