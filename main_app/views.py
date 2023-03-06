@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import DeleteView
-from .models import Ticket
+from .models import Ticket, Concert
 import requests
 client_id = 'client_id=MzIxMjg4OTl8MTY3Nzk0NjYzNi4zMDA4MDYz'
 
@@ -27,40 +27,48 @@ class TicketDelete(DeleteView):
     model = Ticket
     success_url = '/tickets'
 
+def concerts_index(request):
+    concerts = Concert.objects.all()
+    return render(request, 'concerts/concerts_index.html', {
+        'concerts': concerts
+    })
+
 # The user search input is not getting saved because the function gets reset each time, and the variable "search" isn't saved
-def concerts(request):
-    global current_search
-    concerts = None
+def concerts_search(request):
+    concerts = []
     search = request.GET.get('name')
-    choice = request.GET.get('choice')
     response = requests.get(f'https://api.seatgeek.com/2/events?q={search}&{client_id}').json()
     if search:
-        concerts = []
         for e in response['events']:
             # event_name = e['title']
             # concerts.append(event_name)
             concerts.append(e)
-    if choice:
-        # current_search = response['events'][int(choice)]
-        current_search = response['events'][int(choice)]
-        return redirect('ticket_create')
-    return render(request, 'main_app/concerts.html', {
+    return render(request, 'concerts/search.html', {
         'concerts': concerts
-        })
+    })
 
-
-
-def add_ticket(request):
-    concert = current_search['title']
-    # Still need to figure out how to access price and date info from API
-    # new_ticket = Ticket(
-    #     event_name = current_search['title'],
-    #     price = 100,
-    #     location = current_search['venue']['address'],
-    #     date = current_search['datetime_utc']
-    # )
-    # new_ticket.save()
-    return render(request, 'main_app/ticket_form.html', {
+def concert_detail(request, concert_id):
+    # If not in database, create(), then redner detail page
+    # If in database, get concert item from api_id and render detail page
+    concert = Concert.objects.filter(api_id=concert_id).first()
+    if not concert:
+        concert = Concert.objects.create(
+            event_name = request.POST.get('event_name'),
+            price = request.POST.get('price'),
+            location = request.POST.get('location'),
+            date = request.POST.get('date'),
+            api_id = request.POST.get('api_id')
+        )
+    if request.POST:
+        new_ticket = Ticket(
+            event_name = concert.event_name,
+            price = concert.price,
+            location = concert.location,
+            date = concert.date
+        )
+        new_ticket.concert_id = concert_id
+        new_ticket.save()
+    # If form is valid, create and associate ticket
+    return render(request, 'concerts/detail.html', {
         'concert': concert
-        })
-    # return redirect('tickets/detail.html')
+    })
