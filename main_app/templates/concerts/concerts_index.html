@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+Concerts:
+
+{% for concert in concerts %}
+<ul>
+    <li>
+        {{ concert }}
+    </li>
+</ul>
+{% endfor %}
+
+{% endblock %}
