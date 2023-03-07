@@ -36,7 +36,7 @@ def ticket_detail(request, ticket_id):
     return render(request, 'tickets/detail.html', {
         'ticket': ticket, 'cart_count': cart_count
     })
-    
+
 def logout_view(request):
     logout(request)
     return redirect('home')
@@ -88,7 +88,7 @@ def concert_detail(request, concert_id):
             date = concert.date
         )
         new_ticket.concert_id = concert.id
-        new_ticket.save()   
+        new_ticket.save()
     return render(request, 'concerts/detail.html', {
         'concert': concert, 'cart_count': cart_count
     })
