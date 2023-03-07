@@ -5,6 +5,7 @@
 
 
 <form action="{% url 'ticket_index' %}" method="POST">
+    {% csrf_token %}
     <button type="submit">Buy Ticket</button>
 </form>
 

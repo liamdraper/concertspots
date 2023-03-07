@@ -12,6 +12,8 @@
 <br>
 
 {% if concerts %}
+
+<h1>{{ search |title}} Tickets</h1>
  
 {% for concert in concerts %}
 
@@ -19,7 +21,8 @@
     <li>
         <form action="{% url 'concert_detail' concert.id %}" method="POST">
             {% csrf_token %}
-            <label>{{ concert.title }} - {{ concert.venue.name_V2 }}</label>
+            <label>{{ concert.title }} - {{ concert.venue.address }}</label>
+            <img src="{{ concert.performers.0.image }}" alt="">
             <input type="hidden" name="event_name" value="{{ concert.title }}">
             <input type="hidden" name="api_id" value="{{ concert.id }}">
             <input type="hidden" name="price" value="100">
