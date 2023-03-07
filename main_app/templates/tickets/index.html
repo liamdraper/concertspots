@@ -19,4 +19,9 @@
   </div>
 </div>
 
+    <p> {{ ticket.event_name }}</p>
+    <a href="{% url 'ticket_detail' ticket.id %}">Details </a>
+
+{% endfor %}
+
 {% endblock %}

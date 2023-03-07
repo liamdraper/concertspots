@@ -14,8 +14,10 @@
         </form>
       </div>
 
-    </div>
-  </div>
-</div>
+
+<form action="{% url 'ticket_index' %}" method="POST">
+    {% csrf_token %}
+    <button type="submit">Add to Cart</button>
+</form>
 
 {% endblock %}
