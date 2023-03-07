@@ -49,7 +49,7 @@ def concerts_search(request):
             # concerts.append(event_name)
             concerts.append(e)
     return render(request, 'concerts/search.html', {
-        'concerts': concerts, 'search': search
+        'concerts': concerts
     })
 
 def concert_detail(request, concert_id):
@@ -71,7 +71,7 @@ def concert_detail(request, concert_id):
             location = concert.location,
             date = concert.date
         )
-        new_ticket.concert_id = concert.id
+        new_ticket.concert_id = concert_id
         new_ticket.save()
     # If form is valid, create and associate ticket
     return render(request, 'concerts/detail.html', {
