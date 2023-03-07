@@ -3,11 +3,16 @@ from django.views.generic.edit import DeleteView
 from django.contrib.auth import logout
 from .models import Ticket, Concert
 import requests
+from django.contrib.auth import logout
 client_id = 'client_id=MzIxMjg4OTl8MTY3Nzk0NjYzNi4zMDA4MDYz'
 
 # Create your views here.
 def home(request):
     return render(request, 'home.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')
 
 def about(request):
     return render(request, 'about.html')
@@ -77,3 +82,6 @@ def concert_detail(request, concert_id):
     return render(request, 'concerts/detail.html', {
         'concert': concert
     })
+
+def add_ticket():
+    pass
