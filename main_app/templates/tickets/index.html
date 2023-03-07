@@ -6,7 +6,7 @@
 {% for ticket in tickets %}
 
     <p>Ticket Number: {{ ticket.number }}</p>
-    <a href="{% url 'detail' ticket.id %}">Details </a>
+    <a href="{% url 'ticket_detail' ticket.id %}">Details </a>
 
 {% endfor %}
 
