@@ -14,4 +14,6 @@ urlpatterns = [
     path('concerts/', views.concerts_search, name='search'),
     path('concerts/index', views.concerts_index, name='concerts_index'),
     path('concerts/<int:concert_id>', views.concert_detail, name='concert_detail'),
+    path('checkout/cart', views.cart, name='cart'),
+    path('checkout', views.checkout, name='checkout')
 ]

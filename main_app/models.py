@@ -19,6 +19,7 @@ class Ticket(models.Model):
     price = models.IntegerField()
     location = models.CharField(max_length=200)
     date = models.DateTimeField(default=datetime.now)
+    bought = models.BooleanField(default=False)
 
     concert = models.ForeignKey(Concert, on_delete=models.CASCADE)
 
