@@ -6,3 +6,15 @@ nav {
     height: 12vmin;
     font-size: 3vmin;
 }
+.concert-name-container {
+  max-width: 500px; 
+  margin: 0 auto; 
+  word-wrap: break-word;
+}
+
+.concert-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover; 
+  border-radius: 50%; 
+}

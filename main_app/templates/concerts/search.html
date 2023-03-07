@@ -1,40 +1,55 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Concerts: </h1>
-<a href="{% url 'concerts_index' %}">View Recent Searches</a>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1 class="text-center mb-4" style="color: #00BCF8;">Concerts</h1>
+      <a href="{% url 'concerts_index' %}" style="color: #0087BF;">View Recent Searches</a>
 
-<h2>Search Concerts: </h2>
-<form action="" method="GET">
-    <input type="text" name="name" placeholder="Search...">
-    <button type="submit">SEARCH</button>
-</form>
-<br>
+      <h2 class="mt-5 mb-3" style="color: #0087BF;">Search Concerts</h2>
+      <form action="" method="GET">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" name="name" placeholder="Search...">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" style="background-color: #763500; color: #FFFFFF;">SEARCH</button>
+          </div>
+        </div>
+      </form>
 
-{% if concerts %}
+      {% if concerts %}
 
-<h1>{{ search |title}} Tickets</h1>
- 
-{% for concert in concerts %}
+      <h1 class="mt-5 mb-4" style="color: #0087BF;">{{ search |title}} Tickets</h1>
 
-<ul>
-    <li>
-        <form action="{% url 'concert_detail' concert.id %}" method="POST">
-            {% csrf_token %}
-            <label>{{ concert.title }} - {{ concert.venue.address }}</label>
-            <img src="{{ concert.performers.0.image }}" alt="">
-            <input type="hidden" name="event_name" value="{{ concert.title }}">
-            <input type="hidden" name="api_id" value="{{ concert.id }}">
-            <input type="hidden" name="price" value="100">
-            <input type="hidden" name="location" value="{{ concert.venue.address }}">
-            <input type="hidden" name="date" value="{{ concert.datetime_utc }}">
-            <button type="submit">Details</button>
-        </form>
-    </li>
-</ul>
+      {% for concert in concerts %}
 
-{% endfor %}
+      <div class="card mb-3">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{{ concert.performers.0.image }}" alt="" class="card-img">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title" style="color: #0087BF;">{{ concert.title }} - {{ concert.venue.address }}</h5>
+              <form action="{% url 'concert_detail' concert.id %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="event_name" value="{{ concert.title }}">
+                <input type="hidden" name="api_id" value="{{ concert.id }}">
+                <input type="hidden" name="price" value="100">
+                <input type="hidden" name="location" value="{{ concert.venue.address }}">
+                <input type="hidden" name="date" value="{{ concert.datetime_utc }}">
+                <button type="submit" class="btn btn-primary" style="background-color: #763500; border-color: #763500; position: absolute; bottom: 0; right: 0; margin: 10px;">Details</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
 
-{% endif %}
+      {% endfor %}
+
+      {% endif %}
+    </div>
+  </div>
+</div>
 
 {% endblock %}

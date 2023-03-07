@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import DeleteView
+from django.contrib.auth import logout
 from .models import Ticket, Concert
 import requests
 from django.contrib.auth import logout
@@ -35,6 +36,10 @@ def ticket_detail(request, ticket_id):
     return render(request, 'tickets/detail.html', {
         'ticket': ticket, 'cart_count': cart_count
     })
+    
+def logout_view(request):
+    logout(request)
+    return redirect('home')
 
 class TicketDelete(DeleteView):
     model = Ticket

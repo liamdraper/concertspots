@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Tickets:</h1>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1 class="text-center mb-4" style="color: #00BCF8;">Tickets</h1>
 
-{% for ticket in tickets %}
-
-    <p> {{ ticket.event_name }}</p>
-    <a href="{% url 'ticket_detail' ticket.id %}">Details </a>
-
-{% endfor %}
+      {% for ticket in tickets %}
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Ticket Number: {{ ticket.number }}</h5>
+            <a href="{% url 'ticket_detail' ticket.id %}" class="btn btn-primary">Details</a>
+          </div>
+        </div>
+      {% endfor %}
+      
+    </div>
+  </div>
+</div>
 
 {% endblock %}
