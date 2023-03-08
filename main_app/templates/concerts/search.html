@@ -8,7 +8,16 @@
       <a href="{% url 'concerts_index' %}" style="color: #0087BF;">View Recent Searches</a>
 
       <h2 class="mt-5 mb-3" style="color: #0087BF;">Search Concerts</h2>
-      <form action="" method="GET">
+      <form action="{% url 'search' %}" method="POST">
+        {% csrf_token %}
+        <label for="">Search By</label>
+        <select name="sort">
+          <option value="default"></option>
+          <option value="asc_name">Sort by Name(A-Z)</option>
+          <option value="dsc_name">Sort by Name(Z-A)</option>
+          <option value="asc_price">Sort by Price(Highest-Lowest)</option>
+          <option value="dsc_price">Sort by Price(Lowest-Highest)</option>
+        </select>
         <div class="input-group mb-3">
           <input type="text" class="form-control" name="name" placeholder="Search...">
           <div class="input-group-append">
@@ -16,6 +25,7 @@
           </div>
         </div>
       </form>
+
 
       {% if concerts %}
 
@@ -35,7 +45,7 @@
                 {% csrf_token %}
                 <input type="hidden" name="event_name" value="{{ concert.title }}">
                 <input type="hidden" name="api_id" value="{{ concert.id }}">
-                <input type="hidden" name="price" value="100">
+                <input type="hidden" name="price" value="{{ concert.stats.average_price }}">
                 <input type="hidden" name="location" value="{{ concert.venue.address }}">
                 <input type="hidden" name="date" value="{{ concert.datetime_utc }}">
                 <button type="submit" class="btn btn-primary" style="background-color: #763500; border-color: #763500; position: absolute; bottom: 0; right: 0; margin: 10px;">Details</button>

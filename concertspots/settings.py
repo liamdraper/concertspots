@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'concertspots.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cartoonzrule/ConcertSpot',
+        'NAME': 'liamdraper83/concertspots',
         'USER': os.environ['DB_USER'],
         'PASSWORD': os.environ['DB_PW'],
         'HOST': 'db.bit.io',
