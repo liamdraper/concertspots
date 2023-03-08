@@ -14,7 +14,7 @@
         <div class="container">
             <a href="#" class="navbar-brand">concertSpots</a>
             <ul class="navbar-nav">
-
+                {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a href="{% url 'home' %}" class="nav-link" id="home">Home</a>
                 </li>
