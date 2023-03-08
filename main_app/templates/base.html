@@ -10,11 +10,11 @@
   </body>
 </head>
 <body>
-    <nav class="navbar navbar-expand navbar-dark bg-primary">
+    <nav class="navbar fixed-top navbar-expand navbar-dark bg-primary">
         <div class="container">
             <a href="#" class="navbar-brand">concertSpots</a>
             <ul class="navbar-nav">
-                {% if user.is_authenticated %}
+
                 <li class="nav-item">
                     <a href="{% url 'home' %}" class="nav-link" id="home">Home</a>
                 </li>
@@ -30,7 +30,7 @@
                 <li class="nav-item login">
                     <a href="{% url 'logout' %}" class="nav-link">Log Out</a>
                 </li>
-                {% else %} 
+                
                 <li class="nav-item">
                     <a href="{% url 'home' %}" class="nav-link" id="home">Home</a>
                 </li>
@@ -43,7 +43,7 @@
                 <li class="nav-item">
                     <a href="{% url 'cart' %}" class="nav-link">Cart( {{ cart_count }} )</a>
                 </li>
-                {% endif %}  
+              
             </ul>
         </div>
     </nav>

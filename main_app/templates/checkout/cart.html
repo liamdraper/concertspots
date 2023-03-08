@@ -9,14 +9,14 @@
     <li>
         {{ item.event_name }}
         <a href="{% url 'ticket_delete' item.id %}">Remove Item from cart</a>
-        <form action="{% url 'checkout'  %}" method="POST">
-            {% csrf_token %}
-            <button type="submit">Buy Ticket</button>
-        </form>
     </li>
 </ul>
 
 {% endfor %}
 
+<form action="{% url 'checkout'  %}" method="POST">
+    {% csrf_token %}
+    <button type="submit">Buy Tickets</button>
+</form>
 
 {% endblock %}

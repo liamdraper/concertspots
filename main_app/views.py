@@ -56,21 +56,41 @@ def concerts_index(request):
 def concerts_search(request):
     cart_count = Ticket.objects.filter(bought=False).count()
     concerts = []
-    search = request.GET.get('name')
+    search = request.POST.get('name')
     response = requests.get(f'https://api.seatgeek.com/2/events?q={search}&{client_id}').json()
-    if search:
+    if request.POST.get('sort') == 'default':
         for e in response['events']:
-            # event_name = e['title']
-            # concerts.append(event_name)
             concerts.append(e)
+    if request.POST.get('sort') == 'asc_name':
+        for e in response['events']:
+            concerts.append(e)
+        concerts = sorted(concerts, key=lambda x:x['title'])
+    if request.POST.get('sort') == 'dsc_name':
+        for e in response['events']:
+            concerts.append(e)
+        concerts = sorted(concerts, key=lambda x:x['title'], reverse=True)
+    if request.POST.get('sort') == 'asc_price':
+        for e in response['events']:
+            if e['stats']['average_price'] == None:
+                e['stats']['average_price'] = 100;
+            concerts.append(e)
+        concerts = sorted(concerts, key=lambda x:x['stats']['average_price'])
+    if request.POST.get('sort') == 'dsc_price':
+        for e in response['events']:
+            if e['stats']['average_price'] == None:
+                e['stats']['average_price'] = 100;
+            concerts.append(e)
+        concerts = sorted(concerts, key=lambda x:x['stats']['average_price'], reverse=True)
     return render(request, 'concerts/search.html', {
         'concerts': concerts, 'search': search, 'cart_count': cart_count
     })
 
+def sort_searches(request):
+    pass
+
+
 def concert_detail(request, concert_id):
     cart_count = Ticket.objects.filter(bought=False).count()
-    # If not in database, create(), then redner detail page
-    # If in database, get concert item from api_id and render detail page
     concert = Concert.objects.filter(api_id=concert_id).first()
     if not concert:
         concert = Concert.objects.create(
@@ -92,9 +112,6 @@ def concert_detail(request, concert_id):
     return render(request, 'concerts/detail.html', {
         'concert': concert, 'cart_count': cart_count
     })
-
-def add_ticket():
-    pass
 
 def nav_cart(request):
     cart_count = Ticket.objects.filter(bought=False).count()
