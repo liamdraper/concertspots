@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import DeleteView
-from django.contrib.auth import logout
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .models import Ticket, Concert
 import requests
-from django.contrib.auth import logout
+from django.contrib.auth import logout, authenticate
 client_id = 'client_id=MzIxMjg4OTl8MTY3Nzk0NjYzNi4zMDA4MDYz'
 
 # Create your views here.
@@ -37,9 +38,25 @@ def ticket_detail(request, ticket_id):
         'ticket': ticket, 'cart_count': cart_count
     })
     
+def login_view(request):
+    form = AuthenticationForm()
+    return render(request, 'login.html', {'form': form})
 def logout_view(request):
     logout(request)
     return redirect('home')
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = UserCreationForm()
+    return render(request, 'signup.html', {'form': form})
 
 class TicketDelete(DeleteView):
     model = Ticket

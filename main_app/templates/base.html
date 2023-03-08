@@ -27,10 +27,13 @@
                 <li class="nav-item">
                     <a href="{% url 'search' %}" class="nav-link">Find Shows</a>
                 </li>
-                <li class="nav-item login">
+                <li class="nav-item">
                     <a href="{% url 'logout' %}" class="nav-link">Log Out</a>
                 </li>
-                
+                <li class="nav-item">
+                    <a href="{% url 'cart' %}" class="nav-link">Cart( {{ cart_count }} )</a>
+                </li>
+                {% else %} 
                 <li class="nav-item">
                     <a href="{% url 'home' %}" class="nav-link" id="home">Home</a>
                 </li>
@@ -40,10 +43,7 @@
                 <li class="nav-item">
                     <a href="{% url 'login' %}" class="nav-link">Log In</a>
                 </li>
-                <li class="nav-item">
-                    <a href="{% url 'cart' %}" class="nav-link">Cart( {{ cart_count }} )</a>
-                </li>
-              
+                {% endif %}  
             </ul>
         </div>
     </nav>
