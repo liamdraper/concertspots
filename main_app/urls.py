@@ -10,7 +10,6 @@ urlpatterns = [
     path('tickets/', views.tickets_index, name='ticket_index'),
     path('tickets/<int:ticket_id>', views.ticket_detail, name='ticket_detail'),
     path('tickets/<int:pk>/delete/', views.TicketDelete.as_view(), name='ticket_delete'),
-    path('tickets/create/', views.add_ticket, name='ticket_create'),
     path('login/', views.login_view, name='login'),
     path('logout/', LogoutView.as_view(next_page='home'), name='logout'),
     path('signup/', views.signup, name='signup'),
