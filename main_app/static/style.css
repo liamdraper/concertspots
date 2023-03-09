@@ -1,5 +1,6 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background-color: #FAF9F6;
 }
 
 nav {
@@ -27,11 +28,6 @@ h1 {
   object-fit: cover; 
 }
 
-.navbar-scrolled {
-  background-color: white;
-  color: purple;
-}
-
 #search-btn {
   margin-left: 1.5vmin;
 }
@@ -44,4 +40,33 @@ h1 {
 #cart {
   width: 5vmin;
   border-radius: 100%;
+}
+
+main#home {
+  display: flex;
+  flex-direction: row;
+}
+
+main#home > div {
+  margin-top: 5vmin;
+  width: 120vmin;
+  background-image: url('https://t4.ftcdn.net/jpg/01/29/27/73/360_F_129277373_HOQaWFD8bupLUvqF6NWg4dkSkR80HPzO.jpg');
+  background-size: 180vmin;
+}
+
+main#home > div > p {
+  font-size: 4vmin;
+  margin: 5vmin;
+  margin-top: 8vmin;
+}
+
+main#home > div > p > span{
+  font-size: 4vmin;
+  margin: 5vmin;
+  color: #00BCF8;
+}
+
+main#home > img {
+  width: 80vmin;
+  height: 100vmin;
 }

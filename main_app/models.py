@@ -16,7 +16,7 @@ class Concert(models.Model):
 
 class Ticket(models.Model):
     event_name =  models.CharField(max_length=200)
-    price = models.IntegerField()
+    price = models.IntegerField(default=100)
     location = models.CharField(max_length=200)
     date = models.DateTimeField(default=datetime.now)
     bought = models.BooleanField(default=False)

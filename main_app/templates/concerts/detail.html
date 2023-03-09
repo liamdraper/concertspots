@@ -2,15 +2,17 @@
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container mt-5"">
   <div class="row justify-content-center">
     <div class="col-md-8">
       <h1 class="text-center mb-4" style="color: #00BCF8;">{{ concert.event_name }}</h1>
-      <img src="{{ concert.performers.0.image }}" alt="" class="card-img">
+      <h2 class="text-center mb-4" style="color: #00BCF8;">${{ concert.price }}</h2>
+      <p class="text-center mb-3">{{ concert.location }}</p>
+        <p class="text-center mb-3">{{ concert.date }}</p>
       <div class="d-flex justify-content-end mb-3">
         <form action="{% url 'ticket_index' %}" method="POST">
           {% csrf_token %}
-          <button type="submit" class="btn btn-primary" style="background-color: #0087BF; border-color: #0087BF;">Buy Ticket</button>
+          <button type="submit" class="btn btn-primary" style="background-color: #0087BF; border-color: #0087BF;">Add to Cart</button>
         </form>
       </div>
 
