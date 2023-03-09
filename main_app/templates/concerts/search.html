@@ -4,7 +4,7 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <h1 class="text-center mb-4" style="color: #00BCF8;">Find your favorite upcoming shows</h1>
+      <h1 class="text-center mb-4" style="color: #00BCF8;">Find Your Favorite Upcoming Shows</h1>
 
       <h2 class="mt-5 mb-3" style="color: #0087BF;">Search Concerts</h2>
       <form action="{% url 'search' %}" method="POST">
@@ -40,7 +40,11 @@
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title" style="color: #0087BF;">{{ concert.title }} - {{ concert.venue.address }}</h5>
+              <h4 class="card-title" style="color: #0087BF;">{{ concert.title }}</h4>
+              <br>
+              <h5 class="card-subtitle" style="color: #0087BF;">{{ concert.venue.name }}</h5>
+              <br><br><br>
+              <h6 class="card-text" style="color: #763500;">{{ concert.datetime_utc }}</h6>
               <form action="{% url 'concert_detail' concert.id %}" method="POST">
                 {% csrf_token %}
                 <input type="hidden" name="event_name" value="{{ concert.title }}">

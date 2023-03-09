@@ -109,10 +109,13 @@ def sort_searches(request):
 def concert_detail(request, concert_id):
     cart_count = Ticket.objects.filter(bought=False).count()
     concert = Concert.objects.filter(api_id=concert_id).first()
+    price = 100
+    if request.POST.get('price') == None:
+        price = 100
     if not concert:
         concert = Concert.objects.create(
             event_name = request.POST.get('event_name'),
-            price = request.POST.get('price'),
+            price = price,
             location = request.POST.get('location'),
             date = request.POST.get('date'),
             api_id = request.POST.get('api_id')
@@ -145,7 +148,11 @@ def cart(request):
 
 def checkout(request):
     items = Ticket.objects.filter(bought=False)
-    for item in items:
-        item.bought = True
-        item.save()
+    if request.POST.get('empty') == 'Empty Cart':
+        for item in items:
+            item.delete()
+    if request.POST.get('buy') == 'Buy Tickets':
+        for item in items:
+            item.bought = True
+            item.save()
     return redirect('ticket_index')
