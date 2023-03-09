@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,48 +7,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>concertSpots</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-  </body>
 </head>
 <body>
     <nav class="navbar fixed-top navbar-expand navbar-dark bg-primary">
         <div class="container">
-            <a href="#" class="navbar-brand">concertSpots</a>
-            <ul class="navbar-nav">
+            <ul class="navbar-nav d-flex flex-row justify-content-between bd-highlight" style="width:150vmin">
                 {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a href="{% url 'home' %}" class="nav-link" id="home">Home</a>
+                <li class="nav-item p-2 bd-highlight">
+                    <a href="{% url 'home' %}" class="nav-link navbar-brand">concertSpots</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item p-2 bd-highlight">
                     <a href="{% url 'about' %}" class="nav-link">About</a>
                 </li>
-                <li class="nav-item">
-                    <a href="{% url 'ticket_index' %}" class="nav-link">My Tickets</a>
-                </li>
-                <li class="nav-item">
+                <li class="nav-item p-2 flex-grow-1 bd-highlight">
                     <a href="{% url 'search' %}" class="nav-link">Find Shows</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item p-2 bd-highlight">
+                    <a href="{% url 'ticket_index' %}" class="nav-link">My Tickets</a>
+                </li>
+                <li class="nav-item p-2 bd-highlight">
+                    <a href="{% url 'cart' %}" class="nav-link"><img id="cart" src="https://t3.ftcdn.net/jpg/03/14/84/36/360_F_314843655_pDnLe2HuQaCianR0bXDMzOWujb0qRnH6.jpg" alt=""> {{ cart_count }} </a>
+                </li>
+                <li class="nav-item p-2 bd-highlight">
                     <a href="{% url 'logout' %}" class="nav-link">Log Out</a>
                 </li>
-                <li class="nav-item">
-                    <a href="{% url 'cart' %}" class="nav-link">Cart( {{ cart_count }} )</a>
-                </li>
                 {% else %} 
-                <li class="nav-item">
+                <li class="nav-item p-2 bd-highlight">
                     <a href="{% url 'home' %}" class="nav-link" id="home">Home</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item p-2 bd-highlight">
                     <a href="{% url 'about' %}" class="nav-link">About</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item p-2 bd-highlight">
                     <a href="{% url 'login' %}" class="nav-link">Log In</a>
                 </li>
                 {% endif %}  
             </ul>
         </div>
     </nav>
-    {% block content %}
-    {% endblock %}
+
+    <script>
+        const nav = document.querySelector('.navbar');
+        // nav.style.backgroundColor = 'red';
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 55) {
+                nav.classList.remove('bg-primary')
+                nav.classList.add('bg-light')
+                nav.classList.remove('navbar-dark')
+                nav.classList.add('navbar-light')
+            } else {
+                nav.classList.add('bg-primary')
+                nav.classList.remove('bg-light')
+                nav.classList.add('navbar-dark')
+                nav.classList.remove('navbar-light')
+            }
+        });
+    </script>
+    
+
+{% block content %}
+{% endblock %}
+
 </body>
+
 </html>
