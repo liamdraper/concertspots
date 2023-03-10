@@ -4,10 +4,10 @@ body {
 }
 
 nav {
-    height: 8vmin;
-    font-size: 2.4vmin;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
-    transition: .2s;
+  height: 8vmin;
+  font-size: 2.4vmin;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+  transition: .2s;
 }
 
 h1 {
@@ -48,11 +48,12 @@ main#home {
 }
 
 main#home > div {
-  margin-top: 5vmin;
+  margin-top: 8vmin;
   width: 120vmin;
-  background-image: url('https://t4.ftcdn.net/jpg/01/29/27/73/360_F_129277373_HOQaWFD8bupLUvqF6NWg4dkSkR80HPzO.jpg');
-  background-size: 180vmin;
+  background-color: #00bcf8;
+  background-image: linear-gradient(0deg, #00bcf8 0%, #FFEFFF 71%);
 }
+
 
 main#home > div > p {
   font-size: 4vmin;
@@ -60,13 +61,59 @@ main#home > div > p {
   margin-top: 8vmin;
 }
 
-main#home > div > p > span{
+main#home > img {
+  width: 100vmin;
+  height: 100vmin;
+}
+
+div#sign-up {
+  margin-top: 15vmin;
+  margin-left: 10vmin;
+}
+
+div#about {
+  margin: 4vmin;
+}
+
+div#about {
+  margin-top: 4vmin;
+}
+
+div#about > h2{
+  font-size: 5vmin;
+  margin-top: 8vmin;
+}
+
+div#about > ul > li {
   font-size: 4vmin;
-  margin: 5vmin;
+  margin: 2vmin;
+}
+
+span{
   color: #00BCF8;
 }
 
-main#home > img {
-  width: 80vmin;
-  height: 100vmin;
+div#checkout {
+  margin: 10vmin;
+  width: 150vmin
+}
+
+div#checkout > ul {
+  font-size: 3vmin;
+  list-style-type: none;
+}
+
+div#checkout > p {
+  font-size: 3vmin;
+}
+
+div#concert-index > ul {
+  font-size: 2vmin;
+  margin: 3vmin;
+  list-style-type: circle;
+}
+
+#add-cart {
+  position: relative;
+  right: 5;
 }

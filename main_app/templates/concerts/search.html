@@ -44,13 +44,13 @@
               <br>
               <h5 class="card-subtitle" style="color: #0087BF;">{{ concert.venue.name }}</h5>
               <br><br><br>
-              <h6 class="card-text" style="color: #763500;">{{ concert.datetime_utc }}</h6>
+              <h6 class="card-text" style="color: #763500;">{{ concert.datetime_utc|slice:"0:10" }}</h6>
               <form action="{% url 'concert_detail' concert.id %}" method="POST">
                 {% csrf_token %}
                 <input type="hidden" name="event_name" value="{{ concert.title }}">
                 <input type="hidden" name="api_id" value="{{ concert.id }}">
                 <input type="hidden" name="price" value="{{ concert.stats.average_price }}">
-                <input type="hidden" name="location" value="{{ concert.venue.address }}">
+                <input type="hidden" name="location" value="{{ concert.venue.name }}">
                 <input type="hidden" name="date" value="{{ concert.datetime_utc }}">
                 <button type="submit" class="btn btn-primary" style="background-color: #763500; border-color: #763500; position: absolute; bottom: 0; right: 0; margin: 10px;">Details</button>
               </form>

@@ -17,7 +17,7 @@
             <ul class="navbar-nav d-flex flex-row justify-content-between bd-highlight" style="width:150vmin">
                 {% if user.is_authenticated %}
                 <li class="nav-item p-2 bd-highlight">
-                    <a href="{% url 'home' %}" class="nav-link navbar-brand">concertSpots</a>
+                    <a href="{% url 'home' %}" class="nav-link">concertSpots</a>
                 </li>
                 <li class="nav-item p-2 bd-highlight">
                     <a href="{% url 'about' %}" class="nav-link">About</a>
@@ -29,7 +29,7 @@
                     <a href="{% url 'ticket_index' %}" class="nav-link">My Tickets</a>
                 </li>
                 <li class="nav-item p-2 bd-highlight">
-                    <a href="{% url 'cart' %}" class="nav-link"><img id="cart" src="https://t3.ftcdn.net/jpg/03/14/84/36/360_F_314843655_pDnLe2HuQaCianR0bXDMzOWujb0qRnH6.jpg" alt=""> {{ cart_count }} </a>
+                    <a href="{% url 'cart' %}" class="nav-link"><img id="cart" src="https://t3.ftcdn.net/jpg/03/14/84/36/360_F_314843655_pDnLe2HuQaCianR0bXDMzOWujb0qRnH6.jpg" alt=""> {{ cart_count }}</a>
                 </li>
                 <li class="nav-item p-2 bd-highlight">
                     <a href="{% url 'logout' %}" class="nav-link">Log Out</a>
