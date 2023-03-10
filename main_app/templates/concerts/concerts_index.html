@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
 
-Concerts:
+<div id="concert-index">
 
-{% for concert in concerts %}
-<ul>
-    <li>
-        {{ concert }}
-    </li>
-</ul>
-{% endfor %}
+    <h1 class="text-center mb-4" style="color: #00BCF8; width:60vmin">Recent Searches: </h1>
+
+    {% for concert in concerts %}
+    <ul>
+        <li>
+            {{ concert }}
+        </li>
+    </ul>
+    {% endfor %}
+
+</div>
 
 {% endblock %}
