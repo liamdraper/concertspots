@@ -29,7 +29,7 @@
                     <a href="{% url 'ticket_index' %}" class="nav-link">My Tickets</a>
                 </li>
                 <li class="nav-item p-2 bd-highlight">
-                    <a href="{% url 'cart' %}" class="nav-link"><img id="cart" src="https://t3.ftcdn.net/jpg/03/14/84/36/360_F_314843655_pDnLe2HuQaCianR0bXDMzOWujb0qRnH6.jpg" alt=""> <span id="cart_count">{{ cart_count }}</span></a>
+                    <a href="{% url 'cart' %}" class="nav-link"><img id="cart" src="https://t3.ftcdn.net/jpg/03/14/84/36/360_F_314843655_pDnLe2HuQaCianR0bXDMzOWujb0qRnH6.jpg" alt=""> {{ cart_count }}</a>
                 </li>
                 <li class="nav-item p-2 bd-highlight">
                     <a href="{% url 'logout' %}" class="nav-link">Log Out</a>
